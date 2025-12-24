@@ -1,0 +1,495 @@
+/* Главный контейнер первой части */
+
+.main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;      
+    z-index: 1;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;    
+}
+
+
+
+.second-c {
+    display: none;
+}
+
+.logo-preview .logo-txt {
+    position: relative;
+    z-index: 10;
+    color: white;
+    font-size: 13vw;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: clamp(8px, 2vw, 40px);
+}
+
+.logo-preview .logo-txt p {
+    transition: all 0.3s ease;
+}
+
+.logo-preview .logo-txt:hover p {
+    animation: rainbow-flash 1s linear infinite;
+}
+
+@keyframes rainbow-flash {
+    0%   { color: red; }
+    20%  { color: orange; }
+    40%  { color: yellow; }
+    60%  { color: green; }
+    80%  { color: blue; }
+    100% { color: purple; }
+}
+
+.logo-img-rotate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 5s linear infinite;
+    overflow: hidden;
+}
+/* крутящийся круг */
+.logo-img-spin img {
+    width: max(160vw, 2500px);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 45px rgba(1, 15, 209, 0.25));
+    animation: pulse 5s linear infinite;
+}
+/* анимации круга */
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* 4 маски по углам */
+.corner-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+}
+
+.corner-images img {
+    position: absolute;
+    width: clamp(180px, 22vw, 420px);
+    height: auto;
+    opacity: 0;
+    animation: fadeSwing 1.1s ease-in-out infinite;
+}
+
+.corner-images .top-left {
+    top: 1%;
+    left: 3%;
+}
+
+.corner-images .top-right {
+    bottom: -5%;
+    left: 3%;
+}
+
+.corner-images .bottom-left {
+    bottom: 0;
+    right: 3%;
+}
+
+.corner-images .bottom-right {
+    top: -5%;
+    right: 2%;
+}
+
+
+/*вращение туда сюда 4 масок*/
+@keyframes fadeSwing {
+    0% {
+        opacity: 0;
+       
+    }
+    25% {
+        opacity: 1;
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        opacity: 1;
+        transform: rotate(15deg);
+    }
+    100% {
+        opacity: 0;
+     
+    }
+}
+
+/* 4 блока */
+.container-2{
+    width: 100%;
+    height: auto;
+    background-color: black;
+    z-index: 2;
+    position: relative;
+     box-shadow: 0px -40px 20px rgb(0, 0, 0);
+}
+
+
+.union {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;      
+    padding: 0 2.25%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    column-gap: 2.25%;
+    row-gap: 1.25rem;
+}
+
+/* красный */
+.tall-cont { 
+    position: relative; 
+    background: red; 
+    border-radius: 24px; 
+    grid-column: 1 / 2; 
+    grid-row: 1 / 3; 
+    overflow: hidden; 
+} 
+    
+.tall-cont::before { 
+    content: ""; 
+    position: absolute; 
+    inset: 5px; 
+    background: #000; 
+    border-radius: 24px; }
+/* падающие маски */
+.falling {
+    position: absolute;
+    top: 50px; 
+    opacity: 0;
+    width: 50%;
+    height: auto;
+    animation: fall 3s ease-in-out infinite; /* движение линейное, скорость постоянная */
+}
+
+/* Разные позиции и задержки для хаотичности */
+.falling:nth-child(1) {left:0%; animation-delay: 0s; animation-duration: 3.2s;}
+.falling:nth-child(2){left:28%; animation-delay: 0.5s; animation-duration:3.3s;}
+.falling:nth-child(3){left:57%; animation-delay: 1s; animation-duration: 3.4s; }
+.falling:nth-child(4){left:35%; animation-delay: 2s; animation-duration: 3.5s; }
+.falling:hover {
+  animation-play-state: paused;
+}
+/* Анимация падения с плавным исчезновением, скорость постоянная */
+@keyframes fall {
+    0% {
+        top: 0px;
+        opacity: 0; 
+        transform: rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1; 
+    }
+    100% {
+        top: 77%;   
+        opacity: 0; 
+        transform: rotate(20deg);
+    }
+}
+.inside-tall-cont{
+    background-color: black;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+
+@keyframes spin-smooth {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(720deg); }   
+  100% { transform: rotate(0deg); } 
+}
+
+.star-round {
+    position: absolute;
+    width: 140%;       
+    height: auto;
+    animation: spin-smooth 8s infinite;
+}
+
+.cent-cont {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background: #FCD330;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+.cent-cont {
+    position: relative;
+}
+
+.right-cont { 
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    background: #52D668;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.right-cont::before { 
+    content: ""; 
+    position: absolute; 
+    inset: 5px; 
+    background: #000; 
+    border-radius: 24px; 
+    z-index: 0;
+}
+
+
+/* Собака спереди, по центру, меньше квадрата */
+.dog-round {
+    width: 80%;     
+    height: auto;
+    z-index: 1;
+}
+
+/* Бабочки сзади, по центру, меньше квадрата */
+.batfly {
+    position: absolute;
+    width: 90%;     
+    height: auto;
+    object-fit: contain;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Показываем бабочек при наведении на контейнер */
+.right-cont:hover .batfly {
+    opacity: 1;
+}
+
+.bottom-cont {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #00009F;
+    align-items: center;
+    
+}
+
+/* контейнер для глаз */
+.eyes-wrapper {
+    width: min(90vw, 800px);
+    display: flex;
+    gap: clamp(24px, 5vw, 64px);
+}
+.left-eye{
+    margin-left: -32px;
+    transition: opacity .25s ease;
+}
+.left-eye:hover{
+    background-image: url(../img/r-eye.svg);
+}
+
+.right-eye:hover{
+    background-image: url(../img/l-eye.svg);
+}
+/* сами глаза */
+.eye {
+    position: relative;
+    width: 50%;          /* 400px из 800 */
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* левый / правый */
+.left-eye {
+    background-image: url("../img/l-eye.svg");
+}
+
+.right-eye {
+    background-image: url("../img/r-eye.svg");
+}
+
+/* зрачок */
+.pupil {
+    position: absolute;
+    width: 18%;
+    aspect-ratio: 1 / 1;
+    background: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     animation: pupil-move 2s ease-in-out infinite alternate; 
+}
+
+
+
+/* глаз — быстрее, догоняет */
+.eye {
+    animation: eye-follow 2s ease-in-out infinite alternate; 
+    animation-delay: 2s;
+}
+
+/* движение зрачка */
+@keyframes pupil-move {
+    from { transform: translate(-50%, -50%) translateX(-20%); }
+    to   { transform: translate(-50%, -50%) translateX(20%); }
+}
+
+/* движение глаза */
+@keyframes eye-follow {
+    from { transform: translateX(8%); }
+    to   { transform: translateX(-8%); }
+}
+
+.tall-cont,
+.cent-cont,
+.right-cont,
+.bottom-cont,
+.inside-tall-cont {
+    border-radius: 30px;
+}
+
+.cent-cont,
+.right-cont {
+    aspect-ratio: 1 / 1;   
+    
+}
+
+.marquee-container {
+  width: 100vw;
+  height: 300px;
+  overflow: hidden;
+  background-color: black;
+  position: absolute;
+ 
+}
+/* бегущая строка */
+.marquee {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: marquee 10s linear infinite; 
+  will-change: transform;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  perspective: 1000px; 
+  position: relative;  
+  
+}
+
+.run-stroke {
+  display: inline-flex;
+  white-space: nowrap;
+  font-size: clamp(48px, 12vw, 160px);
+  font-weight: 600;
+  color: #fff;
+  flex: none;
+
+}
+
+.run-stroke span {
+  display: inline-block;
+  transition: color 0s, transform 0.25s ease;
+}
+
+
+/* анимация от 0 до -50% суммарной ширины блоков */
+@keyframes marquee {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-50%,0,0); }
+}
+
+
+@keyframes marquee-col1 {
+  0% { color: #FE0101; }
+  20%{color: #FCD330;}
+  40%{color: #199922;}
+  60%{color: #00009F;}
+  80%{color: #B000B8;}
+  100% {color: #FE0101;}
+}
+@keyframes marquee-col2 {
+  0% { color: #FCD330; }
+  20%{color: #199922;}
+  40%{color: #00009F;}
+  60%{color: #B000B8;}
+  80%{color: #FE0101;}
+  100% {color: #FCD330;}
+}
+@keyframes marquee-col3 {
+  0% { color: #199922; }
+  20%{color: #00009F;}
+  40%{color: #B000B8;}
+  60%{color: #FE0101;}
+  80%{color: #FCD330;}
+  100% {color: #199922;}
+}
+@keyframes marquee-col4 {
+  0% { color: #00009F;}
+  20%{color: #B000B8;}
+  40%{color: #FE0101;}
+  60%{color: #FCD330;}
+  80%{color: #199922;}
+  100% {color: #00009F;}
+}
+@keyframes marquee-col5 {
+  0% { color: #B000B8; }
+  20%{color: #FE0101;}
+  40%{color: #FCD330;}
+  60%{color: #199922;}
+  80%{color: #00009F;}
+  100% {color: #B000B8; }
+}
+
+.run-stroke span:nth-child(1)  { animation:marquee-col1 2s linear infinite ;}
+.run-stroke span:nth-child(2) { animation:marquee-col2 2s linear infinite ; }
+.run-stroke span:nth-child(3) { animation:marquee-col3 2s linear infinite ;}
+.run-stroke span:nth-child(4) { animation:marquee-col4 2s linear infinite ;}
+.run-stroke span:nth-child(5) { animation:marquee-col5 2s linear infinite ;}
+.run-stroke span:nth-child(6) { animation:marquee-col1 2s linear infinite ;}
+.run-stroke span:nth-child(7) { animation:marquee-col2 2s linear infinite ;}
+.run-stroke span:nth-child(8) { animation:marquee-col3 2s linear infinite ;}
+.run-stroke span:nth-child(9) { animation:marquee-col4 2s linear infinite ;}
+.run-stroke span:nth-child(10) { animation:marquee-col5 2s linear infinite ;}
+.run-stroke span:nth-child(11) { animation:marquee-col1 2s linear infinite ;}
+.run-stroke span:nth-child(12) { animation:marquee-col2 2s linear infinite ;}
+.run-stroke span:nth-child(13) { animation:marquee-col3 2s linear infinite ;}
+.run-stroke span:nth-child(14) { animation:marquee-col4 2s linear infinite ;}
+.run-stroke span:nth-child(15) { animation:marquee-col5 2s linear infinite ;}
+.run-stroke span:nth-child(16) { animation:marquee-col1 2s linear infinite ;}
+.run-stroke span:nth-child(17) { animation:marquee-col2 2s linear infinite ;}
+.run-stroke span:nth-child(18) { animation:marquee-col3 2s linear infinite ;}
+.run-stroke span:nth-child(19) { animation:marquee-col4 2s linear infinite ;}
+.run-stroke span:nth-child(20) { animation:marquee-col5 2s linear infinite ;}
+.run-stroke span:nth-child(21) { animation:marquee-col1 2s linear infinite ;}
+.run-stroke span:nth-child(22) { animation:marquee-col2 2s linear infinite ;}
+.run-stroke span:nth-child(23) { animation:marquee-col3 2s linear infinite ;}
+.run-stroke span:nth-child(24) { animation:marquee-col4 2s linear infinite ;}
+.run-stroke span:nth-child(25) { animation:marquee-col5 2s linear infinite ;}
+
+
